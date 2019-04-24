@@ -4,9 +4,9 @@ import com.geektech.lastfmapp.model.TrackEntity;
 
 import java.util.ArrayList;
 
-public class TopTracksPresenter implements TopTracksContract.Presenter {
+public class TopTracksPresenter implements ITopTracksContract.Presenter {
 
-    private TopTracksContract.View mView;
+    private ITopTracksContract.View mView;
 
     @Override
     public void getTracks() {
@@ -30,7 +30,7 @@ public class TopTracksPresenter implements TopTracksContract.Presenter {
     }
 
     @Override
-    public void attachView(TopTracksContract.View view) {
+    public void attachView(ITopTracksContract.View view) {
         mView = view;
         mView.attachPresenter(this);
     }

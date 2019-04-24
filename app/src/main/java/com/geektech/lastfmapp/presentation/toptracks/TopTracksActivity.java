@@ -7,43 +7,25 @@ import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.model.TrackEntity;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
-public class TopTracksActivity extends AppCompatActivity
-    implements TopTracksContract.View {
+public class TopTracksActivity extends AppCompatActivity {
 
-    private TopTracksContract.Presenter mPresenter;
+    private ITopTracksContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_tracks);
+
+        TopTracksFragment fragment = TopTracksFragment.newInstance();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(android.R.id.content, fragment)
+                .commit();
 
         mPresenter = new TopTracksPresenter();
-        mPresenter.attachView(this);
-    }
-
-    @Override
-    public void showTracks(List<TrackEntity> tracks) {
-
-    }
-
-    @Override
-    public void openTrack(TrackEntity track) {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void finishView() {
-        finish();
-    }
-
-    @Override
-    public void attachPresenter(TopTracksContract.Presenter presenter) {
-
+        mPresenter.attachView(fragment);
     }
 }
