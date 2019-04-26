@@ -1,12 +1,12 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
+import com.geektech.core.mvp.CoreMvpPresenter;
 import com.geektech.lastfmapp.model.TrackEntity;
 
 import java.util.ArrayList;
 
-public class TopTracksPresenter implements ITopTracksContract.Presenter {
-
-    private ITopTracksContract.View mView;
+public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View>
+        implements ITopTracksContract.Presenter {
 
     @Override
     public void getTracks() {
@@ -19,24 +19,13 @@ public class TopTracksPresenter implements ITopTracksContract.Presenter {
         trackEntities.add(new TrackEntity(4, "name", "artist", "image"));
         trackEntities.add(new TrackEntity(5, "name", "artist", "image"));
 
-        if (mView != null) {
-            mView.showTracks(trackEntities);
+        if (view != null) {
+            view.showTracks(trackEntities);
         }
     }
 
     @Override
     public void onTrackClick(int position) {
 
-    }
-
-    @Override
-    public void attachView(ITopTracksContract.View view) {
-        mView = view;
-        mView.attachPresenter(this);
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
     }
 }

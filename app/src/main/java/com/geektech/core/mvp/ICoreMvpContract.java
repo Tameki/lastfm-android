@@ -5,6 +5,8 @@ public interface ICoreMvpContract {
         void attachPresenter(T presenter);
 
         void finishView();
+
+        void showMessage(String message);
     }
 
     interface Presenter<T extends View> {

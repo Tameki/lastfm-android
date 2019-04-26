@@ -1,36 +1,30 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.geektech.core.mvp.CoreMvpFragment;
+import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.model.TrackEntity;
 
 import java.util.List;
 
-public class TopTracksFragment extends Fragment
+public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presenter>
     implements ITopTracksContract.View {
-
-    private ITopTracksContract.Presenter mPresenter;
 
     public static TopTracksFragment newInstance() {
         TopTracksFragment fragment = new TopTracksFragment();
         return fragment;
     }
 
-    //region Lifecycle
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_top_tracks;
     }
 
-    //endregion
+    @Override
+    protected void initView(View view) {
+        //TODO: Init
+    }
 
     //region Contract
 
@@ -42,16 +36,6 @@ public class TopTracksFragment extends Fragment
     @Override
     public void openTrackDetails(TrackEntity track) {
 
-    }
-
-    @Override
-    public void attachPresenter(ITopTracksContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public void finishView() {
-        getActivity().finish();
     }
 
     //endregion
