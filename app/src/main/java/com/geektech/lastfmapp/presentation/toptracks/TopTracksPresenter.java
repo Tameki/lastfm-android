@@ -1,27 +1,39 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
 import com.geektech.core.mvp.CoreMvpPresenter;
+import com.geektech.lastfmapp.data.tracks.ITracksRepository;
+import com.geektech.lastfmapp.data.tracks.local.ITracksLocalStorage;
 import com.geektech.lastfmapp.model.TrackEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View>
         implements ITopTracksContract.Presenter {
 
+    private ITracksRepository repository;
+
+    public TopTracksPresenter(ITracksRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void getTracks() {
-        //TODO: Get tracks from Repository
-        ArrayList<TrackEntity> trackEntities = new ArrayList<>();
+        repository.getTracks(new ITracksRepository.TracksCallback() {
+            @Override
+            public void onSuccess(List<TrackEntity> tracks) {
+                if (view != null) {
+                    view.showTracks(tracks);
+                }
+            }
 
-        trackEntities.add(new TrackEntity(1, "name", "artist", "image"));
-        trackEntities.add(new TrackEntity(2, "name", "artist", "image"));
-        trackEntities.add(new TrackEntity(3, "name", "artist", "image"));
-        trackEntities.add(new TrackEntity(4, "name", "artist", "image"));
-        trackEntities.add(new TrackEntity(5, "name", "artist", "image"));
-
-        if (view != null) {
-            view.showTracks(trackEntities);
-        }
+            @Override
+            public void onFailure(String message) {
+                if (view != null) {
+                    view.showMessage(message);
+                }
+            }
+        });
     }
 
     @Override
