@@ -25,7 +25,7 @@ public class TopTracksActivity extends AppCompatActivity {
                 .add(android.R.id.content, fragment)
                 .commit();
 
-        mPresenter = new TopTracksPresenter();
-        mPresenter.attachView(fragment);
+//        mPresenter = new TopTracksPresenter();
+//        mPresenter.attachView(fragment);
     }
 }
