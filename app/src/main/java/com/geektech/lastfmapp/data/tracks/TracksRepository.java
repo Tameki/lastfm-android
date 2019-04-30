@@ -4,7 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.geektech.lastfmapp.data.tracks.local.ITracksLocalStorage;
 import com.geektech.lastfmapp.data.tracks.remote.ITracksRemoteStorage;
-import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.List;
 
@@ -31,20 +31,24 @@ public class TracksRepository implements ITracksRepository {
 
     @Override
     public void getTracks(final TracksCallback callback) {
-        local.getTracks(callback);
+        if (local != null) {
+            local.getTracks(callback);
+        }
 
-        remote.getTracks(new TracksCallback() {
-            @Override
-            public void onSuccess(List<TrackEntity> tracks) {
-                local.setTracks(tracks);
+        if (remote != null) {
+            remote.getTracks(new TracksCallback() {
+                @Override
+                public void onSuccess(List<TrackEntity> tracks) {
+                    local.setTracks(tracks);
 
-                callback.onSuccess(tracks);
-            }
+                    callback.onSuccess(tracks);
+                }
 
-            @Override
-            public void onFailure(String message) {
-                callback.onFailure(message);
-            }
-        });
+                @Override
+                public void onFailure(String message) {
+                    callback.onFailure(message);
+                }
+            });
+        }
     }
 }

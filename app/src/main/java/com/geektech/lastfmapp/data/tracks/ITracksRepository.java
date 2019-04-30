@@ -1,9 +1,8 @@
 package com.geektech.lastfmapp.data.tracks;
 
 import android.support.annotation.Nullable;
-import android.view.View;
 
-import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.List;
 

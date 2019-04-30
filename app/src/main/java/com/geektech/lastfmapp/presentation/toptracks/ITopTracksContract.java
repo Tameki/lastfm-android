@@ -1,7 +1,7 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
 import com.geektech.core.mvp.ICoreMvpContract;
-import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.List;
 

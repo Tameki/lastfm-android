@@ -3,12 +3,7 @@ package com.geektech.lastfmapp.presentation.toptracks;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.geektech.lastfmapp.R;
-import com.geektech.lastfmapp.model.TrackEntity;
-
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import com.geektech.lastfmapp.App;
 
 public class TopTracksActivity extends AppCompatActivity {
 
@@ -25,7 +20,8 @@ public class TopTracksActivity extends AppCompatActivity {
                 .add(android.R.id.content, fragment)
                 .commit();
 
-//        mPresenter = new TopTracksPresenter();
-//        mPresenter.attachView(fragment);
+        mPresenter = new TopTracksPresenter(App.tracksRepository);
+        mPresenter.attachView(fragment);
+        mPresenter.getTracks();
     }
 }

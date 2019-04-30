@@ -1,9 +1,8 @@
 package com.geektech.lastfmapp.data.tracks.local;
 
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
-import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.entities.TrackEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TracksLocalStorage implements ITracksLocalStorage {
