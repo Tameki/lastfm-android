@@ -2,6 +2,10 @@ package com.geektech.lastfmapp.data.tracks.remote;
 
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
 import com.geektech.lastfmapp.data.tracks.remote.model.TracksResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -9,17 +13,18 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public class TracksRemoteStorage implements ITracksRemoteStorage {
     private final static String BASE_URL = "http://ws.audioscrobbler.com";
     private final static String API_KEY = "fd9879050c0e606b547d60ec49f0ca19";
 
-    private Retrofit retrofit = new Retrofit.Builder()
+    public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    private TracksNetworkClient client = retrofit.create(TracksNetworkClient.class);
+    public static TracksNetworkClient client = retrofit.create(TracksNetworkClient.class);
 
     @Override
     public void getTracks(ITracksRepository.TracksCallback callback) {

@@ -2,6 +2,7 @@ package com.geektech.lastfmapp.data.tracks;
 
 import android.support.annotation.Nullable;
 
+import com.geektech.core.CoreCallback;
 import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.List;
@@ -13,9 +14,5 @@ public interface ITracksRepository {
 
     void getTracks(TracksCallback callback);
 
-    public interface TracksCallback {
-        void onSuccess(List<TrackEntity> tracks);
-
-        void onFailure(String message);
-    }
+    interface TracksCallback extends CoreCallback<List<TrackEntity>> { }
 }
