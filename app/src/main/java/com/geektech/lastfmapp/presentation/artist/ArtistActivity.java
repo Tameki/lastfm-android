@@ -9,7 +9,7 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
     implements IArtistContract.View {
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_top_tracks;
+        return R.layout.fragment_top_tracks;
     }
 
     @Override

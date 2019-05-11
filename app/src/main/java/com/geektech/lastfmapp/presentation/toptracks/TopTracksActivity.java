@@ -22,6 +22,5 @@ public class TopTracksActivity extends AppCompatActivity {
 
         mPresenter = new TopTracksPresenter(App.tracksRepository);
         mPresenter.attachView(fragment);
-        mPresenter.getTracks();
     }
 }

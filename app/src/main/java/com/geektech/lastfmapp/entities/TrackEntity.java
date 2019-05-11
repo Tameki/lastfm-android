@@ -35,6 +35,8 @@ public class TrackEntity {
         this.image = image;
     }
 
+    //region Getters/Setters
+
     public ArtistEntity getArtist() {
         return artist;
     }
@@ -89,6 +91,12 @@ public class TrackEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    //endregion
+
+    public String getUniqueId() {
+        return name + " " + artist.getName();
     }
 
     @Override

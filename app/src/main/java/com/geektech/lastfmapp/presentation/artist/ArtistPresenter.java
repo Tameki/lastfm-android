@@ -10,4 +10,9 @@ public class ArtistPresenter implements IArtistContract.Presenter {
     public void detachView() {
 
     }
+
+    @Override
+    public void onViewCreated() {
+
+    }
 }

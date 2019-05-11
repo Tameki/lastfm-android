@@ -18,10 +18,6 @@ public class TopTrackViewHolder extends RecyclerView.ViewHolder {
 
     public interface TopTrackClickListener {
         void onTrackClick(int position);
-
-        void onShareClick(int position);
-
-        void onBookmarkClick(int position);
     }
 
 }

@@ -9,4 +9,6 @@ public interface ITracksLocalStorage {
     void getTracks(ITracksRepository.TracksCallback callback);
 
     void setTracks(List<TrackEntity> tracks);
+
+    TrackEntity getTrack();
 }

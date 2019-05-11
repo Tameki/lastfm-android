@@ -31,6 +31,10 @@ public abstract class CoreMvpFragment<T extends ICoreMvpContract.Presenter> exte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
+
+        if (presenter != null) {
+            presenter.onViewCreated();
+        }
     }
 
     @Override

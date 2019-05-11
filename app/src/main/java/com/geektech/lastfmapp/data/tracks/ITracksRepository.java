@@ -10,7 +10,7 @@ import java.util.List;
 public interface ITracksRepository {
 
     @Nullable
-    TrackEntity getTrack(int id);
+    TrackEntity getTrack(String uniqueId);
 
     void getTracks(TracksCallback callback);
 

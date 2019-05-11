@@ -14,6 +14,11 @@ public class TracksLocalStorage implements ITracksLocalStorage {
 
     @Override
     public void setTracks(List<TrackEntity> tracks) {
-        //TODO: Save to DBw
+        //TODO: Save to DB
+    }
+
+    @Override
+    public TrackEntity getTrack() {
+        return null;
     }
 }

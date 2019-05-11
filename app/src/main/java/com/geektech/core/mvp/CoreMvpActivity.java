@@ -30,6 +30,7 @@ public abstract class CoreMvpActivity<T extends ICoreMvpContract.Presenter> exte
         presenter = providePresenter();
         if (presenter != null) {
             presenter.attachView(this);
+            presenter.onViewCreated();
         }
     }
 

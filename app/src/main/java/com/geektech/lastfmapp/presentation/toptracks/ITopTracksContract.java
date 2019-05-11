@@ -10,6 +10,10 @@ public interface ITopTracksContract {
         void showTracks(List<TrackEntity> tracks);
 
         void openTrackDetails(TrackEntity track);
+
+        void startRefresh();
+
+        void stopRefresh();
     }
 
     interface Presenter extends ICoreMvpContract.Presenter<View> {
