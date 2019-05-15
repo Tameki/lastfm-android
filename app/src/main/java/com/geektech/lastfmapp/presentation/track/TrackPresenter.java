@@ -2,7 +2,7 @@ package com.geektech.lastfmapp.presentation.track;
 
 import com.geektech.core.mvp.CoreMvpPresenter;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 
 public class TrackPresenter extends CoreMvpPresenter<ITrackContract.View>
         implements ITrackContract.Presenter {
@@ -22,7 +22,7 @@ public class TrackPresenter extends CoreMvpPresenter<ITrackContract.View>
     public void onViewCreated() {
         super.onViewCreated();
 
-        TrackEntity track = repository.getTrack(trackId);
+        Track track = repository.getTrack(trackId);
 
         if (view != null && track != null) {
             view.showTrack(track);

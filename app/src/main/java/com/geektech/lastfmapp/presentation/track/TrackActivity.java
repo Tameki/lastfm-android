@@ -2,15 +2,12 @@ package com.geektech.lastfmapp.presentation.track;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.geektech.core.mvp.CoreMvpActivity;
 import com.geektech.lastfmapp.App;
 import com.geektech.lastfmapp.R;
-import com.geektech.lastfmapp.entities.TrackEntity;
-import com.geektech.lastfmapp.presentation.artist.ArtistPresenter;
-import com.geektech.lastfmapp.presentation.artist.IArtistContract;
+import com.geektech.lastfmapp.entities.Track;
 
 public class TrackActivity extends CoreMvpActivity<ITrackContract.Presenter>
     implements ITrackContract.View {
@@ -19,14 +16,9 @@ public class TrackActivity extends CoreMvpActivity<ITrackContract.Presenter>
 
     private static final String EXTRA_TRACK_ID = "track_id";
 
-    public static void start(
-            Activity activity,
-            String trackId
-    ) {
+    public static void start(Activity activity, String trackId) {
         Intent intent = new Intent(activity, TrackActivity.class);
-
         intent.putExtra(EXTRA_TRACK_ID, trackId);
-
         activity.startActivity(intent);
     }
 
@@ -56,7 +48,7 @@ public class TrackActivity extends CoreMvpActivity<ITrackContract.Presenter>
     }
 
     @Override
-    public void showTrack(TrackEntity track) {
+    public void showTrack(Track track) {
         //TODO: Show track details
     }
 }

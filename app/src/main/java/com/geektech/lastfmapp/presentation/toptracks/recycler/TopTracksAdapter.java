@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import java.util.List;
 public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private TopTrackViewHolder.TopTrackClickListener mListener;
-    private ArrayList<TrackEntity> mTracks;
+    private ArrayList<Track> mTracks;
 
     public TopTracksAdapter(
             TopTrackViewHolder.TopTrackClickListener listener,
-            ArrayList<TrackEntity> tracks
+            ArrayList<Track> tracks
     ) {
         mListener = listener;
         mTracks = tracks;
@@ -25,7 +25,6 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
-
         return null;
     }
 
@@ -39,7 +38,7 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mTracks.size();
     }
 
-    public void setTracks(List<TrackEntity> tracks) {
+    public void setTracks(List<Track> tracks) {
         mTracks.clear();
         mTracks.addAll(tracks);
         notifyDataSetChanged();

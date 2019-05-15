@@ -3,7 +3,7 @@ package com.geektech.lastfmapp.presentation.toptracks;
 import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpPresenter;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View
         implements ITopTracksContract.Presenter {
 
     private ITracksRepository repository;
-    private ArrayList<TrackEntity> mCache = new ArrayList<>();
+    private ArrayList<Track> mCache = new ArrayList<>();
 
     public TopTracksPresenter(ITracksRepository repository) {
         this.repository = repository;
     }
 
-    private void setCache(List<TrackEntity> tracks) {
+    private void setCache(List<Track> tracks) {
         mCache.clear();
         mCache.addAll(tracks);
     }
@@ -35,9 +35,9 @@ public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View
             view.startRefresh();
         }
 
-        repository.getTracks(new ITracksRepository.TracksCallback() {
+        repository.getTopTracks(new ITracksRepository.TracksCallback() {
             @Override
-            public void onSuccess(List<TrackEntity> tracks) {
+            public void onSuccess(List<Track> tracks) {
                 setCache(tracks);
                 Logger.d("Tracks success " + tracks.size());
                 if (view != null) {

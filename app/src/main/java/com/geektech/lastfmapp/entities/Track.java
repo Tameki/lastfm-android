@@ -4,14 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TrackEntity {
-    private int id;
-
+public class Track {
     @SerializedName("name")
     private String name;
 
     @SerializedName("artist")
-    private ArtistEntity artist;
+    private Artist artist;
 
     @SerializedName("url")
     private String url;
@@ -23,10 +21,9 @@ public class TrackEntity {
     private String listeners;
 
     @SerializedName("image")
-    private List<TrackImage> image;
+    private List<Image> image;
 
-    public TrackEntity(int id, String name, ArtistEntity artist, String url, String playcount, String listeners, List<TrackImage> image) {
-        this.id = id;
+    public Track(String name, Artist artist, String url, String playcount, String listeners, List<Image> image) {
         this.name = name;
         this.artist = artist;
         this.url = url;
@@ -37,11 +34,11 @@ public class TrackEntity {
 
     //region Getters/Setters
 
-    public ArtistEntity getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(ArtistEntity artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
     }
 
@@ -69,20 +66,12 @@ public class TrackEntity {
         this.listeners = listeners;
     }
 
-    public List<TrackImage> getImage() {
+    public List<Image> getImage() {
         return image;
     }
 
-    public void setImage(List<TrackImage> image) {
+    public void setImage(List<Image> image) {
         this.image = image;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -101,6 +90,6 @@ public class TrackEntity {
 
     @Override
     public String toString() {
-        return id + " " + name + " " + artist + " " + image;
+        return name + " " + artist + " " + image;
     }
 }

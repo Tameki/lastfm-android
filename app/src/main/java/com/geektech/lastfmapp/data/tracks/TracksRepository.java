@@ -4,7 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.geektech.lastfmapp.data.tracks.local.ITracksLocalStorage;
 import com.geektech.lastfmapp.data.tracks.remote.ITracksRemoteStorage;
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +16,7 @@ public class TracksRepository implements ITracksRepository {
     @Nullable
     private ITracksRemoteStorage remote;
 
-    private HashMap<String, TrackEntity> mCache = new HashMap<>();
+    private HashMap<String, Track> mCache = new HashMap<>();
 
     public TracksRepository(
             @Nullable ITracksLocalStorage local,
@@ -26,30 +26,30 @@ public class TracksRepository implements ITracksRepository {
         this.remote = remote;
     }
 
-    private void setCache(List<TrackEntity> tracks) {
+    private void setCache(List<Track> tracks) {
         if (local != null) {
             local.setTracks(tracks);
         }
 
-        for(TrackEntity track : tracks) {
+        for(Track track : tracks) {
             mCache.put(track.getUniqueId(), track);
         }
     }
 
     @Nullable
     @Override
-    public TrackEntity getTrack(String uniqueId) {
-        TrackEntity track = mCache.get(uniqueId);
+    public Track getTrack(String uniqueId) {
+        Track track = mCache.get(uniqueId);
 
         if (track == null && local != null) {
-            track = local.getTrack();
+            track = local.getTrack(uniqueId);
         }
 
         return track;
     }
 
     @Override
-    public void getTracks(final TracksCallback callback) {
+    public void getTopTracks(final TracksCallback callback) {
         if (local != null) {
             local.getTracks(callback);
         }
@@ -57,7 +57,7 @@ public class TracksRepository implements ITracksRepository {
         if (remote != null) {
             remote.getTracks(new TracksCallback() {
                 @Override
-                public void onSuccess(List<TrackEntity> tracks) {
+                public void onSuccess(List<Track> tracks) {
                     setCache(tracks);
 
                     callback.onSuccess(tracks);
@@ -69,5 +69,10 @@ public class TracksRepository implements ITracksRepository {
                 }
             });
         }
+    }
+
+    @Override
+    public void getArtistTopTracks(String artistName, TracksCallback callback) {
+        //TODO: Fetch artist top tracks
     }
 }

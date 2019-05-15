@@ -3,16 +3,18 @@ package com.geektech.lastfmapp.data.tracks;
 import android.support.annotation.Nullable;
 
 import com.geektech.core.CoreCallback;
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 
 import java.util.List;
 
 public interface ITracksRepository {
 
     @Nullable
-    TrackEntity getTrack(String uniqueId);
+    Track getTrack(String uniqueId);
 
-    void getTracks(TracksCallback callback);
+    void getTopTracks(TracksCallback callback);
 
-    interface TracksCallback extends CoreCallback<List<TrackEntity>> { }
+    void getArtistTopTracks(String artistName, TracksCallback callback);
+
+    interface TracksCallback extends CoreCallback<List<Track>> { }
 }

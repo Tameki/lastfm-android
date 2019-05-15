@@ -19,4 +19,10 @@ public class Logger {
             Log.d(tag, message);
         }
     }
+
+    public static void e(Exception e) {
+        if (sEnabled) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
 }

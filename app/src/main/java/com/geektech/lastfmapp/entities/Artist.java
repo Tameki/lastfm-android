@@ -2,7 +2,7 @@ package com.geektech.lastfmapp.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ArtistEntity {
+public class Artist {
     @SerializedName("name")
     private String name;
     @SerializedName("mbid")
@@ -10,7 +10,7 @@ public class ArtistEntity {
     @SerializedName("url")
     private String url;
 
-    public ArtistEntity(String name, String mbid, String url) {
+    public Artist(String name, String mbid, String url) {
         this.name = name;
         this.mbid = mbid;
         this.url = url;

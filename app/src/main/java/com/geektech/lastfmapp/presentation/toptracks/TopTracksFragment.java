@@ -6,7 +6,7 @@ import android.view.View;
 import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpFragment;
 import com.geektech.lastfmapp.R;
-import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.entities.Track;
 import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTrackViewHolder;
 import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTracksAdapter;
 import com.geektech.lastfmapp.presentation.track.TrackActivity;
@@ -60,14 +60,14 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
     //region Contract
 
     @Override
-    public void showTracks(List<TrackEntity> tracks) {
-        for (TrackEntity track : tracks) {
+    public void showTracks(List<Track> tracks) {
+        for (Track track : tracks) {
             Logger.d(track.toString());
         }
     }
 
     @Override
-    public void openTrackDetails(TrackEntity track) {
+    public void openTrackDetails(Track track) {
         if (getActivity() != null) {
             TrackActivity.start(getActivity(), track.getUniqueId());
         }
