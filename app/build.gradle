@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
+    def STRING = "String"
+    def BASE_URL = "BASE_URL"
+    def API_KEY = "API_KEY"
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.geektech.lastfmapp"
@@ -10,11 +14,21 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField STRING, API_KEY, "\"fd9879050c0e606b547d60ec49f0ca19\""
     }
+
     buildTypes {
+        debug {
+            debuggable true
+            buildConfigField STRING, BASE_URL, "\"http://ws.audioscrobbler.com\""
+        }
+
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField STRING, BASE_URL, "\"http://ws.audioscrobbler.com\""
         }
     }
 
@@ -26,6 +40,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':core')
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

@@ -26,6 +26,8 @@ public class TrackPresenter extends CoreMvpPresenter<ITrackContract.View>
 
         if (view != null && track != null) {
             view.showTrack(track);
+
+            //TODO: Fetch track lyrics
         }
     }
 }

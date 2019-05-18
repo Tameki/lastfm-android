@@ -31,47 +31,37 @@ public class TracksLocalStorage extends CoreRealmDataSource
 
     @Override
     public void getTracks(ITracksRepository.TracksCallback callback) {
-        Realm realm = null;
+        Realm realm = getRealmInstance();
 
-        try {
-            realm = getRealmInstance();
+        RealmResults<RTrack> results = realm.where(RTrack.class).findAll();
 
-            RealmResults<RTrack> results = realm.where(RTrack.class).findAll();
+        callback.onSuccess(
+                TracksMapper.toTracks(realm.copyFromRealm(results))
+        );
 
-            callback.onSuccess(
-                    TracksMapper.toTracks(realm.copyFromRealm(results))
-            );
-        } catch (Exception e) {
-            Logger.e(e);
-        } finally {
-            if (realm != null) {
-                realm.close();
-            }
-        }
+        realm.close();
     }
 
     @Override
     public void setTracks(List<Track> tracks) {
-        List<RTrack> rTracks = TracksMapper.toRTracks(tracks);
-
         executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                for (RTrack rTrack : rTracks) {
 
+                for (Track track : tracks) {
                     RTrack managedTrack = realm.where(RTrack.class)
-                            .equalTo("uniqueId", rTrack.getUniqueId())
+                            .equalTo("uniqueId", track.getUniqueId())
                             .findFirst();
 
                     if (managedTrack == null) {
-                        realm.copyToRealm(rTrack);
+                        realm.copyToRealm(TracksMapper.toRTrack(track));
                     } else {
-                        managedTrack.setListeners(rTrack.getListeners());
-                        managedTrack.setPlaycount(rTrack.getPlaycount());
+                        managedTrack.setListeners(track.getListeners());
+                        managedTrack.setPlaycount(track.getPlaycount());
+                        managedTrack.setUrl(track.getUrl());
                     }
                 }
 
-//                managedTrack.getImages().deleteAllFromRealm();
 //                managedTrack.deleteFromRealm();
             }
         });

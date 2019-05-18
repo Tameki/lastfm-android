@@ -13,6 +13,6 @@ public class ArtistPresenter implements IArtistContract.Presenter {
 
     @Override
     public void onViewCreated() {
-
+        //TODO: Fetch artist info and artist top tracks
     }
 }
